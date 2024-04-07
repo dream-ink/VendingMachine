@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Human {
-    private String name;
-    private LocalDate dob, dad;
-    private Gender gender;
-    private List<Human>children;
-    private int age;
-    private Human mother, father;
+    public String name;
+    public LocalDate dob, dad;
+    public Gender gender;
+    public List<Human>children;
+    public int age;
+    public String mother;
+    public String father;
 
-    public Human(String name, LocalDate dob, LocalDate dad, Gender gender, int age, Human mother, Human father) {
+    public Human(String name, LocalDate dob, LocalDate dad, Gender gender, int age, String mother, String father) {
         this.name = name;
         this.dob = dob;
         this.dad = dad;
@@ -37,6 +38,12 @@ public class Human {
             setMother(parent);
         }
         return true;
+    }
+
+    private void setMother(Human parent) {
+    }
+
+    private void setFather(Human parent) {
     }
 
     public Gender getGender() {
@@ -87,24 +94,8 @@ public class Human {
         this.age = age;
     }
 
-    public Human getMother() {
-        return mother;
-    }
-
-    public void setMother(Human mother) {
-        this.mother = mother;
-    }
-
-    public Human getFather() {
-        return father;
-    }
-
-    public void setFather(Human father) {
-        this.father = father;
-    }
-
-    public List<Human> getParents() {
-        List<Human> list = new ArrayList<>(2);
+    public List<String> getParents() {
+        List<String> list = new ArrayList<>(2);
                 if (father != null) {
                     list.add(father);
         }
@@ -116,18 +107,27 @@ public class Human {
 
     @Override
     public String toString() {
-        return getInfo;
+        return getInfo();
     }
 
     public String getInfo() {
         StringBuilder sbuild = new StringBuilder();
         sbuild.append("Имя: ");
         sbuild.append(name);
+        sbuild.append(", дата рождения: ");
+        sbuild.append(dob);
+        sbuild.append(", дата смерти: ");
+        sbuild.append(dad);
         sbuild.append(", пол: ");
         sbuild.append(getGender());
         sbuild.append(", возраст: ");
         sbuild.append(age);
-
+        sbuild.append(", имя матери: ");
+        sbuild.append(mother);
+        sbuild.append(", имя отца: ");
+        sbuild.append(father);
+        return sbuild.toString();
     }
+
 }
 
